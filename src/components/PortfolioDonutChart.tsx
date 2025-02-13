@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { usePortfolioData } from "../hooks/usePortfolioData";
+import Card from "../components/ui/Card";
+import Button from "../components/ui/Button";
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28CF5", "#FF6384", "#FF69B4", "#CD5C5C"];
+const COLORS = ["#2563EB", "#10B981", "#FACC15", "#F97316", "#9333EA", "#EC4899", "#EF4444", "#6B7280"];
 
 const PortfolioDonutChart: React.FC = () => {
     const { assets, positions, loading, error } = usePortfolioData();
@@ -17,7 +19,7 @@ const PortfolioDonutChart: React.FC = () => {
         // Aggregate by asset class (stock, crypto, fiat)
         const classData: Record<string, number> = {};
         positions.forEach((position) => {
-            const asset = assets.find((a) => a.id.toString() === position.id.toString());
+            const asset = assets.find((a) => a.id === position.id.toString());
             if (asset) {
                 classData[asset.type] = (classData[asset.type] || 0) + position.quantity * position.price;
             }
@@ -31,54 +33,54 @@ const PortfolioDonutChart: React.FC = () => {
     } else {
         // Show breakdown by individual asset
         chartData = positions.map((position, index) => {
-            const asset = assets.find((a) => a.id.toString() === position.id.toString());
+            const asset = assets.find((a) => a.id === position.id.toString());
             return {
-                name: asset ? asset.name : `⚠ Unknown Asset (ID: ${position.asset})`,
+                name: asset ? asset.name : `⚠ Unknown (ID: ${position.asset})`,
                 value: position.quantity * position.price,
                 color: COLORS[index % COLORS.length],
             };
         });
     }
 
-    // Ensure even small-value assets (e.g., fiat) are visible
-    const totalValue = chartData.reduce((sum, entry) => sum + entry.value, 0);
-    chartData = chartData.map((entry) => ({
-        ...entry,
-        value: entry.value < totalValue * 0.02 ? totalValue * 0.02 : entry.value // Min 2% of total
-    }));
-
     return (
-        <div className="p-4 bg-white shadow-md rounded-lg flex flex-col items-center">
-            <h2 className="text-xl font-semibold mb-4">Portfolio Breakdown</h2>
-            <button
-                className="mb-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+        <Card className="p-6 flex flex-col items-center bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg rounded-xl border border-gray-700 text-white">
+            <h2 className="text-2xl font-semibold mb-4">Portfolio Breakdown</h2>
+            <Button
                 onClick={() => setViewByClass(!viewByClass)}
+                variant="primary"
+                className="mb-4 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition-all duration-300"
             >
                 {viewByClass ? "View by Asset" : "View by Asset Class"}
-            </button>
-            <div className="w-[350px] h-[350px]">
+            </Button>
+            <div className="w-[550px] h-[500px]">
                 <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                         <Pie
                             data={chartData}
                             cx="50%"
                             cy="50%"
-                            innerRadius={80}
-                            outerRadius={120}
+                            innerRadius={90}
+                            outerRadius={140}
                             paddingAngle={5}
                             dataKey="value"
-                            label
+                            label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
                         >
                             {chartData.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={entry.color} />
+                                <Cell key={`cell-${index}`} fill={entry.color} stroke="white" strokeWidth={1} />
                             ))}
                         </Pie>
-                        <Tooltip />
-                        <Legend verticalAlign="bottom" align="center" layout="horizontal" iconSize={10} wrapperStyle={{ marginTop: 10 }} />
+                        <Tooltip contentStyle={{ backgroundColor: "rgba(0, 0, 0, 0.8)", color: "#fff" }} />
+                        <Legend
+                            verticalAlign="bottom"
+                            align="center"
+                            layout="horizontal"
+                            iconSize={10}
+                            wrapperStyle={{ marginTop: 15, color: "#fff" }}
+                        />
                     </PieChart>
                 </ResponsiveContainer>
             </div>
-        </div>
+        </Card>
     );
 };
 

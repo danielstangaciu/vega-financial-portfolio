@@ -1,15 +1,14 @@
 import React from "react";
 
 interface CardProps {
-    title: string;
     children: React.ReactNode;
+    className?: string;
 }
 
-const Card: React.FC<CardProps> = ({ title, children }) => {
+const Card: React.FC<CardProps> = ({ children, className }) => {
     return (
-        <div className="bg-background p-6 rounded-xl shadow-lg text-text border border-secondary/50 backdrop-blur-md">
-            <h2 className="text-xl font-semibold">{title}</h2>
-            <div className="mt-4">{children}</div>
+        <div className={`p-8 rounded-2xl shadow-lg ${className}`}>
+            {children}
         </div>
     );
 };

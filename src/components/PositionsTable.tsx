@@ -1,4 +1,6 @@
 import { usePortfolioData } from "../hooks/usePortfolioData";
+import Card from "../components/ui/Card";
+import Container from "../components/ui/Container";
 
 const PositionsTable: React.FC = () => {
     const { assets, positions, loading, error } = usePortfolioData();
@@ -11,42 +13,38 @@ const PositionsTable: React.FC = () => {
     if (!positions.length) return <p className="text-center text-gray-500">No positions available.</p>;
 
     return (
-        <div className="p-4 bg-white shadow-md rounded-lg">
-            <h2 className="text-xl font-bold mb-4">Portfolio Positions</h2>
-            <table className="w-full border-collapse border border-gray-300">
-                <thead>
-                    <tr className="bg-gray-100">
-                        <th className="border border-gray-300 px-4 py-2">Asset</th>
-                        <th className="border border-gray-300 px-4 py-2">Class</th>
-                        <th className="border border-gray-300 px-4 py-2">Quantity</th>
-                        <th className="border border-gray-300 px-4 py-2">Price</th>
-                        <th className="border border-gray-300 px-4 py-2">Total Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {positions.map((pos) => {
-                        const asset = assets.find((a) => a.id.toString() === pos.id.toString());
-                        return (
-                            <tr key={pos.id} className="border-t">
-                                <td className="border border-gray-300 px-4 py-2">
-                                    {asset ? asset.name : `⚠ Unknown Asset (ID: ${pos.asset})`}
-                                </td>
-                                <td className="border border-gray-300 px-4 py-2">
-                                    {asset ? asset.type.charAt(0).toUpperCase() + asset.type.slice(1) : "N/A"}
-                                </td>
-                                <td className="border border-gray-300 px-4 py-2">{pos.quantity}</td>
-                                <td className="border border-gray-300 px-4 py-2">
-                                    ${pos.price.toFixed(2)}
-                                </td>
-                                <td className="border border-gray-300 px-4 py-2">
-                                    ${(pos.quantity * pos.price).toFixed(2)}
-                                </td>
+        <Container className="p-6">
+            <Card className="p-6 bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg rounded-xl border border-gray-700 text-white">
+                <h2 className="text-2xl font-semibold mb-4">Portfolio Positions</h2>
+                <div className="overflow-x-auto">
+                    <table className="w-full border-collapse text-left">
+                        <thead>
+                            <tr className="bg-gray-700 text-gray-300 uppercase text-sm">
+                                <th className="px-4 py-3">Asset</th>
+                                <th className="px-4 py-3">Class</th>
+                                <th className="px-4 py-3">Quantity</th>
+                                <th className="px-4 py-3">Price</th>
+                                <th className="px-4 py-3">Total Value</th>
                             </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-        </div>
+                        </thead>
+                        <tbody>
+                            {positions.map((pos, index) => {
+                                const asset = assets.find((a) => a.id.toString() === pos.id.toString());
+                                return (
+                                    <tr key={pos.id} className={index % 2 === 0 ? "bg-gray-800" : "bg-gray-900"}>
+                                        <td className="px-4 py-3 text-white font-medium">{asset ? asset.name : `⚠ Unknown (ID: ${pos.asset})`}</td>
+                                        <td className="px-4 py-3 text-gray-300">{asset ? asset.type.charAt(0).toUpperCase() + asset.type.slice(1) : "N/A"}</td>
+                                        <td className="px-4 py-3 text-gray-200">{pos.quantity}</td>
+                                        <td className="px-4 py-3 text-green-400">${pos.price.toFixed(2)}</td>
+                                        <td className="px-4 py-3 text-blue-400 font-semibold">${(pos.quantity * pos.price).toFixed(2)}</td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+            </Card>
+        </Container>
     );
 };
 
