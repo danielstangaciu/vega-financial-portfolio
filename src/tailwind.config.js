@@ -4,13 +4,13 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: "#0D1B2A", // Dark Blue
-                secondary: "#E0E1DD", // Light Gray
-                accent: "#C9A227", // Gold
-                background: "#1B263B", // Dark
-                text: "#FFFFFF", // White
-            },
-        },
+                primary: "#0D1B2A",
+                secondary: "#E0E1DD",
+                accent: "#C9A227",
+                background: "#1B263B",
+                text: "#FFFFFF"
+            }
+        }
     },
-    plugins: [],
+    plugins: []
 };
