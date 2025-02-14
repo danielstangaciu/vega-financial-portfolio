@@ -2,9 +2,229 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Define components layer */
-/* @layer components {
-    .btn {
-        @tailwind reference px-4 py-2 bg-primary text-white rounded-lg shadow-md transition-all duration-200 hover:bg-secondary;
+/*  General Layout */
+.container {
+    @apply w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12;
+}
+
+/*  Cards */
+.card {
+    @apply p-6 flex flex-col items-center bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg rounded-xl border border-gray-700 text-white;
+}
+
+/* Buttons */
+.btn {
+    @apply mb-4 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition-all duration-300 text-white font-medium;
+}
+
+
+/* Positions Table Styling */
+.positions-card {
+    @apply p-6 bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg rounded-xl border border-gray-700 text-white;
+}
+
+.positions-title {
+    @apply text-2xl font-semibold mb-4;
+}
+
+.positions-table-container {
+    @apply overflow-x-auto;
+}
+
+.positions-table {
+    @apply w-full border-collapse text-left;
+}
+
+.positions-table thead {
+    @apply bg-gray-700 text-gray-300 uppercase text-sm;
+}
+
+.positions-table th {
+    @apply px-4 py-3;
+}
+
+.even-row {
+    @apply bg-gray-800;
+}
+
+.odd-row {
+    @apply bg-gray-900;
+}
+
+.asset-name {
+    @apply px-4 py-3 text-white font-medium;
+}
+
+.asset-class {
+    @apply px-4 py-3 text-gray-300;
+}
+
+.quantity {
+    @apply px-4 py-3 text-gray-200;
+}
+
+.price {
+    @apply px-4 py-3 text-green-400;
+}
+
+.total-value {
+    @apply px-4 py-3 text-blue-400 font-semibold;
+}
+
+/* Loading & Error States */
+.table-loading,
+.table-error,
+.table-no-data {
+    @apply text-center text-gray-500;
+}
+
+/* Portfolio Donut Chart Styling */
+.donut-card {
+    @apply p-6 flex flex-col items-center bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg rounded-xl border border-gray-700 text-white;
+}
+
+.donut-title {
+    @apply text-2xl font-semibold mb-4;
+}
+
+.donut-toggle-btn {
+    @apply mb-4 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition-all duration-300;
+}
+
+.donut-chart-container {
+    @apply w-full h-[400px] sm:h-[450px] md:h-[500px] flex justify-center;
+}
+
+.chart-loading,
+.chart-error,
+.chart-no-data {
+    @apply text-center text-gray-500;
+}
+
+/*Historical Chart Styling */
+.chart-container {
+    @apply p-6;
+}
+
+.chart-card {
+    @apply p-6 bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg rounded-xl border border-gray-700 text-white;
+}
+
+.chart-title {
+    @apply text-2xl font-semibold mb-4;
+}
+
+.chart-wrapper {
+    @apply w-full h-[350px];
+}
+
+.chart-grid {
+    stroke: rgba(255, 255, 255, 0.2);
+}
+
+.chart-axis {
+    stroke: white;
+}
+
+
+@layer components {
+
+    /* 🌟 Dashboard Layout */
+    .dashboard-container {
+        @apply min-h-screen bg-gradient-to-br from-background to-primary text-white p-6;
     }
-} */
+
+    .dashboard-header {
+        @apply flex justify-between items-center mb-8;
+    }
+
+    .dashboard-title {
+        @apply text-3xl font-bold tracking-wide;
+    }
+
+    /* Shared Button Style */
+    .dashboard-button {
+        @apply px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition-all duration-300 text-white font-semibold shadow-md;
+    }
+
+    /* Tab Navigation */
+    .dashboard-tabs {
+        @apply flex space-x-4 mb-6 border-b border-white/20 pb-2;
+    }
+
+    .dashboard-tab-button {
+        @apply px-4 py-2 rounded-t-md transition-all;
+    }
+
+    .dashboard-tab-active {
+        @apply bg-white/20 text-gray-900;
+    }
+
+    .dashboard-tab-inactive {
+        @apply text-gray-400;
+    }
+
+    /* 📊 Dashboard Cards */
+    .dashboard-card {
+        @apply p-6 bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg rounded-xl border border-gray-700 text-white;
+    }
+
+    .dashboard-card-title {
+        @apply text-2xl font-semibold mb-4;
+    }
+
+    /* Login Page Container */
+    .login-container {
+        @apply relative flex h-screen justify-center items-center bg-gradient-to-br from-background to-primary overflow-hidden;
+    }
+
+    /* Floating Decorative Elements */
+    .login-decor {
+        @apply absolute rounded-full blur-3xl animate-pulse;
+    }
+
+    .login-decor-top {
+        @apply top-10 left-10 w-24 h-24 bg-accent/30;
+    }
+
+    .login-decor-bottom {
+        @apply bottom-16 right-16 w-32 h-32 bg-secondary/20;
+    }
+
+    /* Login Card */
+    .login-card {
+        @apply w-96 bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl p-6;
+    }
+
+    /* Login Title */
+    .login-title {
+        @apply text-center text-3xl font-bold text-white tracking-wide;
+    }
+
+    /* Login Subtitle */
+    .login-subtitle {
+        @apply text-center text-sm text-gray-300 mb-6;
+    }
+
+    /* Input Field Styling */
+    .login-input-group {
+        @apply flex flex-col;
+    }
+
+    .login-label {
+        @apply text-sm text-gray-300 mb-1;
+    }
+
+    .login-input {
+        @apply w-full p-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-accent placeholder-gray-400;
+    }
+
+    /* Forgot Password / Signup */
+    .login-footer {
+        @apply text-center mt-4;
+    }
+
+    .login-link {
+        @apply text-accent hover:underline;
+    }
+}

@@ -16,7 +16,6 @@ const PortfolioDonutChart: React.FC = () => {
 
     let chartData;
     if (viewByClass) {
-        // Aggregate by asset class (stock, crypto, fiat)
         const classData: Record<string, number> = {};
         positions.forEach((position) => {
             const asset = assets.find((a) => a.id === position.id.toString());
@@ -31,7 +30,6 @@ const PortfolioDonutChart: React.FC = () => {
             color: COLORS[index % COLORS.length],
         }));
     } else {
-        // Show breakdown by individual asset
         chartData = positions.map((position, index) => {
             const asset = assets.find((a) => a.id === position.id.toString());
             return {
@@ -43,24 +41,26 @@ const PortfolioDonutChart: React.FC = () => {
     }
 
     return (
-        <Card className="p-6 flex flex-col items-center bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg rounded-xl border border-gray-700 text-white">
+        <Card className="card">
             <h2 className="text-2xl font-semibold mb-4">Portfolio Breakdown</h2>
+
             <Button
                 onClick={() => setViewByClass(!viewByClass)}
-                variant="primary"
-                className="mb-4 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition-all duration-300"
+                className="btn"
             >
                 {viewByClass ? "View by Asset" : "View by Asset Class"}
             </Button>
-            <div className="w-[550px] h-[500px]">
+
+            {/* 🔹 Fully Responsive Chart Container */}
+            <div className="donut-chart-container">
                 <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                         <Pie
                             data={chartData}
                             cx="50%"
                             cy="50%"
-                            innerRadius={90}
-                            outerRadius={140}
+                            innerRadius="40%"
+                            outerRadius="70%"
                             paddingAngle={5}
                             dataKey="value"
                             label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}

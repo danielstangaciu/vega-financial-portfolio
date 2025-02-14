@@ -20,36 +20,36 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="relative flex h-screen justify-center items-center bg-gradient-to-br from-background to-primary overflow-hidden">
+    <div className="login-container">
       {/* Floating Decorative Elements */}
-      <div className="absolute top-10 left-10 w-24 h-24 bg-accent/30 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-16 right-16 w-32 h-32 bg-secondary/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="login-decor login-decor-top"></div>
+      <div className="login-decor login-decor-bottom"></div>
 
       {/* Reusable Card Component */}
-      <Card className="w-96 bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl">
-        <h2 className="text-center text-3xl font-bold text-white tracking-wide">Welcome Back</h2>
-        <p className="text-center text-sm text-gray-300 mb-6">Sign in to access your dashboard</p>
+      <Card className="login-card">
+        <h2 className="login-title">Welcome Back</h2>
+        <p className="login-subtitle">Sign in to access your dashboard</p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="flex flex-col">
-            <label className="text-sm text-gray-300 mb-1">Username</label>
+          <div className="login-input-group">
+            <label className="login-label">Username</label>
             <input
               type="text"
               placeholder="Enter your username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full p-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-accent placeholder-gray-400"
+              className="login-input"
             />
           </div>
 
-          <div className="flex flex-col">
-            <label className="text-sm text-gray-300 mb-1">Password</label>
+          <div className="login-input-group">
+            <label className="login-label">Password</label>
             <input
               type="password"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-accent placeholder-gray-400"
+              className="login-input"
             />
           </div>
 
@@ -60,12 +60,12 @@ const Login: React.FC = () => {
         </form>
 
         {/* Forgot Password / Sign Up Links */}
-        <div className="text-center mt-4">
+        <div className="login-footer">
           <p className="text-gray-400 text-sm">
-            Forgot password? <a href="#" className="text-accent hover:underline">Reset</a>
+            Forgot password? <a href="#" className="login-link">Reset</a>
           </p>
           <p className="text-gray-400 text-sm mt-2">
-            Don't have an account? <a href="#" className="text-accent hover:underline">Sign up</a>
+            Don't have an account? <a href="#" className="login-link">Sign up</a>
           </p>
         </div>
       </Card>
