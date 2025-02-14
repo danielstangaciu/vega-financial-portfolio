@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
-import Card from "../components/ui/Card"; // ✅ Importing reusable Card component
+import Card from "../components/ui/Card";
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -20,12 +20,12 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="relative flex h-screen justify-center items-center bg-gradient-to-br from-[#0D1B2A] to-[#1B263B] overflow-hidden">
+    <div className="relative flex h-screen justify-center items-center bg-gradient-to-br from-background to-primary overflow-hidden">
       {/* Floating Decorative Elements */}
       <div className="absolute top-10 left-10 w-24 h-24 bg-accent/30 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-16 right-16 w-32 h-32 bg-secondary/20 rounded-full blur-3xl animate-pulse"></div>
 
-      {/* ✅ Reusable Card Component */}
+      {/* Reusable Card Component */}
       <Card className="w-96 bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl">
         <h2 className="text-center text-3xl font-bold text-white tracking-wide">Welcome Back</h2>
         <p className="text-center text-sm text-gray-300 mb-6">Sign in to access your dashboard</p>
@@ -52,8 +52,11 @@ const Login: React.FC = () => {
               className="w-full p-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-accent placeholder-gray-400"
             />
           </div>
+          <div className="bg-red-500 text-white p-4">
+            If this text is red, Tailwind is working!
+          </div>
 
-          {/* ✅ Uses the Button Component */}
+          {/* Uses the Button Component */}
           <Button type="submit" variant="accent" className="w-full py-3 text-lg font-semibold">
             Login
           </Button>
