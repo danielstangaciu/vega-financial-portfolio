@@ -52,9 +52,6 @@ const Login: React.FC = () => {
               className="w-full p-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-accent placeholder-gray-400"
             />
           </div>
-          <div className="bg-red-500 text-white p-4">
-            If this text is red, Tailwind is working!
-          </div>
 
           {/* Uses the Button Component */}
           <Button type="submit" variant="accent" className="w-full py-3 text-lg font-semibold">
