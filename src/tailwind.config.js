@@ -1,12 +1,15 @@
-export default {
-    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-    mode: "jit",
+import { Config } from "tailwindcss";
+
+const config: Config = {
+    content: [
+        "./index.html",
+        "./src/**/*.{js,ts,jsx,tsx}",
+        "./src/components/**/*.{js,ts,jsx,tsx}"
+    ],
     theme: {
-        extend: {
-            colors: {
-                background: "#1B263B",
-            },
-        },
+        extend: {},
     },
     plugins: [],
 };
+
+export default config;
