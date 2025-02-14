@@ -30,32 +30,22 @@ Ensure you have **Node.js** installed (>= 16.x recommended). Then, install depen
 npm install
 ```
 
-### 3️⃣ **Run JSON Server (Mock API)**
-The app uses **JSON Server** to simulate a backend API.
+### 3️⃣ **Start the Application**
+The app uses **JSON Server** to simulate a backend API. The server runs concurrently with the React application.
 
-To start the API:
-```sh
-npx json-server --watch db.json --port 3000
-```
-
-This will serve mock API data on `http://localhost:3000`.
-
-### 4️⃣ **Start the Development Server**
-Once the mock API is running, start the **React app**:
+To start both the **JSON Server** and the **React app**, run:
 ```sh
 npm start
 ```
-This will open the app in your browser at:
-```
-http://localhost:5173
-```
+This will:
+- Start the mock API server at `http://localhost:3000`
+- Start the React application at `http://localhost:5173`
 
-### 5️⃣ **Ensure TailwindCSS Works Correctly**
+### 4️⃣ **Ensure TailwindCSS Works Correctly**
 Since we are using TailwindCSS with Vite, ensure that your Tailwind setup is correct. If Tailwind styles do not apply, run:
 ```sh
 npx tailwindcss -o output.css --watch
 ```
-
 If there are issues with `@apply`, make sure to use `@tailwind reference` instead.
 
 ---
@@ -66,6 +56,8 @@ vega-financial-portfolio/
 │── public/                 # Static assets
 │── src/
 │   ├── components/         # UI Components (Buttons, Cards, Charts, etc.)
+│   │   ├── ui/             # Reusable UI Components
+│   │   ├── charts/         # Chart Components
 │   ├── context/            # Authentication Context
 │   ├── hooks/              # Custom Hooks (usePortfolioData)
 │   ├── pages/              # Page Components (Login, Dashboard)
@@ -74,9 +66,10 @@ vega-financial-portfolio/
 │   ├── App.tsx             # Main Application Entry
 │   ├── main.tsx            # React Bootstrap File
 │── db.json                 # Mock API Data
-│── tailwind.config.ts       # Tailwind CSS Configuration
+│── tailwind.config.ts      # Tailwind CSS Configuration
 │── tsconfig.json           # TypeScript Configuration
 │── vite.config.ts          # Vite Configuration
+│── package.json            # Project Dependencies and Scripts
 │── README.md               # This file
 ```
 
