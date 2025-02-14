@@ -5,8 +5,8 @@ import Container from "../components/ui/Container";
 const PositionsTable: React.FC = () => {
     const { assets, positions, loading, error } = usePortfolioData();
 
-    console.log("🔍 Positions Data:", positions);
-    console.log("🔍 Assets Data:", assets);
+    // console.log("Positions Data:", positions);
+    //console.log("Assets Data:", assets);
 
     if (loading) return <p className="table-loading">Loading positions...</p>;
     if (error) return <p className="table-error">{error}</p>;

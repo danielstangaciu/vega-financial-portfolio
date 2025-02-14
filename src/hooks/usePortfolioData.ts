@@ -15,8 +15,8 @@ export function usePortfolioData() {
                 const assetsData = await fetchAssets();
                 const portfoliosData = await fetchPortfolio();
 
-                console.log("Fetched Assets:", assetsData);
-                console.log("Fetched Portfolios:", portfoliosData);
+                // console.log("Fetched Assets:", assetsData);
+                //console.log("Fetched Portfolios:", portfoliosData);
 
                 setAssets(assetsData);
 

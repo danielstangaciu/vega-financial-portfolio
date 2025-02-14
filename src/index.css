@@ -129,7 +129,7 @@
 
 @layer components {
 
-    /* 🌟 Dashboard Layout */
+    /* Dashboard Layout */
     .dashboard-container {
         @apply min-h-screen bg-gradient-to-br from-background to-primary text-white p-6;
     }
@@ -164,7 +164,7 @@
         @apply text-gray-400;
     }
 
-    /* 📊 Dashboard Cards */
+    /* Dashboard Cards */
     .dashboard-card {
         @apply p-6 bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg rounded-xl border border-gray-700 text-white;
     }
